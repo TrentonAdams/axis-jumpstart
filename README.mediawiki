@@ -1,0 +1,38 @@
+= Building and Deploying =
+The only requirement to build and deploy this example is that 
+* you have jmx installed into your repository
+* you have a "localhost" server configured with username/password
+that match your tomcat manager.
+* you have tomcat running on port localhost:8080
+
+(maven will tell you how, if the build fails because it's missing)
+ mvn install tomcat:deploy
+
+= Development URLs =
+Some administrative urls...
+http://localhost:8080/wsapp/
+http://localhost:8080/wsapp/services/listServices
+http://localhost:8080/wsapp/services/Countries?wsdl
+http://localhost:8080/wsapp/services/Cities?wsdl
+http://localhost:8080/wsapp/axis2-admin/
+http://localhost:8080/wsapp/SOAPMonitor
+
+Default user/pass is admin/axis2 for the admin tool
+
+All of the urls above except the wsdl urls, do not work when deployed to
+production.  The "production" profile excludes them so that we don't add
+unneeded code to production.
+
+= REST URLs =
+I have not tried the SOAP versions, though I'm sure they work fine, but
+here are the REST versions...
+http://localhost:8080/wsapp/services/Countries/testError?errorTest=blah-invalid-value
+http://localhost:8080/wsapp/services/Countries/getCountries
+http://localhost:8080/wsapp/services/Countries/searchCountries?pattern=(?i).*ana.*
+http://localhost:8080/wsapp/services/Cities/getCities
+http://localhost:8080/wsapp/services/Cities/searchCities?pattern=(?i).*mon.*
+
+= Creating Clients =
+The update-client.sh script is an example on how to create a client JAR for
+SOAP based requests to your service.  This JAR is generated from the WSDL,
+using Axis' wsdl2java.sh.
