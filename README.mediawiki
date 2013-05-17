@@ -9,12 +9,12 @@ To build, just run the standard command...
 
 = Development URLs =
 Some administrative urls...
-* http://localhost:8080/wsapp/
-* http://localhost:8080/wsapp/services/listServices
-* http://localhost:8080/wsapp/services/Countries?wsdl
-* http://localhost:8080/wsapp/services/Cities?wsdl
-* http://localhost:8080/wsapp/axis2-admin/
-* http://localhost:8080/wsapp/SOAPMonitor
+* [http://localhost:8080/wsapp/]
+* [http://localhost:8080/wsapp/services/listServices]
+* [http://localhost:8080/wsapp/services/Countries?wsdl]
+* [http://localhost:8080/wsapp/services/Cities?wsdl]
+* [http://localhost:8080/wsapp/axis2-admin/]
+* [http://localhost:8080/wsapp/SOAPMonitor]
 
 Default user/pass is admin/axis2 for the admin tool
 
@@ -25,11 +25,11 @@ unneeded code to production.
 = REST URLs =
 I have not tried the SOAP versions, though I'm sure they work fine, but
 here are the REST versions...
-* http://localhost:8080/wsapp/services/Countries/testError?errorTest=blah-invalid-value
-* http://localhost:8080/wsapp/services/Countries/getCountries
-* http://localhost:8080/wsapp/services/Countries/searchCountries?pattern=(?i).*ana.*
-* http://localhost:8080/wsapp/services/Cities/getCities
-* http://localhost:8080/wsapp/services/Cities/searchCities?pattern=(?i).*mon.*
+* [http://localhost:8080/wsapp/services/Countries/testError?errorTest=blah-invalid-value]
+* [http://localhost:8080/wsapp/services/Countries/getCountries]
+* [http://localhost:8080/wsapp/services/Countries/searchCountries?pattern=(?i).*ana.*]
+* [http://localhost:8080/wsapp/services/Cities/getCities]
+* [http://localhost:8080/wsapp/services/Cities/searchCities?pattern=(?i).*mon.*]
 
 = Creating Clients =
 The update-client.sh script is an example on how to create a client JAR for
