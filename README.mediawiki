@@ -1,11 +1,10 @@
 = Building and Deploying =
 The only requirement to build and deploy this example is that 
-* you have jmx installed into your repository
-* you have a "localhost" server configured with username/password
-that match your tomcat manager.
+* you have jmx installed into your repository; maven will tell you how, if the build fails because it's missing
+* you have a "localhost" server configured with username/password that match your tomcat manager.
 * you have tomcat running on port localhost:8080
 
-(maven will tell you how, if the build fails because it's missing)
+To build, just run the standard command...
  mvn install tomcat:deploy
 
 = Development URLs =
