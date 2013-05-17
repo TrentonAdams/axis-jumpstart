@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/axis-jumpstart.iml" filepath="$PROJECT_DIR$/axis-jumpstart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ws1/ws1.iml" filepath="$PROJECT_DIR$/ws1/ws1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ws2/ws2.iml" filepath="$PROJECT_DIR$/ws2/ws2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wsapp/wsapp.iml" filepath="$PROJECT_DIR$/wsapp/wsapp.iml" />
+    </modules>
+  </component>
+</project>
+

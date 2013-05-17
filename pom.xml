@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>axis-jumpstart</artifactId>
+  <version>0.0.8-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>axis-jumpstart</name>
+
+  <modules>
+    <module>ws1</module>
+    <module>ws2</module>
+    <module>wsapp</module>
+  </modules>
+
+  <properties>
+    <maven.test.skip>true</maven.test.skip>
+
+    <log.wsapp>/tmp/wsapp.log</log.wsapp>
+    <log.wsapp.debug>/tmp/wsapp.log</log.wsapp.debug>
+    <log.smtp.from>me@example.com</log.smtp.from>
+    <log.smtp.to>me@example.com</log.smtp.to>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+<!--      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-property</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireProperty>
+                  <property>oracle.examuser.password</property>
+                  <message>-
+                    YOU MUST have an oracle password property
+                    (oracle.examuser.password) configured.  Please configure
+                    a profile with the property set-up.  You may refer to
+                    https://waas.cs.athabascau.ca/index.php/Maven#Profiles for
+                    more information examples, and suggested naming schemes
+                    and what not.
+                  </message>
+                </requireProperty>
+              </rules>
+              <fail>true</fail>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>-->
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>test</id>
+      <properties>
+        <maven.test.skip>false</maven.test.skip>
+      </properties>
+    </profile>
+    <profile>
+      <id>dtest</id>
+      <properties>
+        <maven.test.skip>false</maven.test.skip>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <forkMode>once</forkMode>
+              <debugForkedProcess>true</debugForkedProcess>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>production</id>
+      <activation>
+        <property>
+          <name>production</name>
+        </property>
+      </activation>
+      <properties>
+        <log.wsapp>/var/log/wsapp.log</log.wsapp>
+        <log.wsapp.debug>/var/log/wsapp.log</log.wsapp.debug>
+        <production>true</production>
+      </properties>
+    </profile>
+
+  </profiles>
+</project>

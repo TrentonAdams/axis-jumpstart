@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration debug="false"
+                     xmlns:log4j="http://jakarta.apache.org/log4j/">
+  <!-- NOTE: The order of elements in this log configuration do matter.  If
+  you make changes, ensure that errors are not being printed to catalina.out
+  -->
+  <appender name="infoFile"
+            class="org.apache.log4j.rolling.RollingFileAppender">
+    <param name="threshold"
+           value="INFO"/>
+    <param name="append"
+           value="true"/>
+    <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+      <param name="ActiveFileName"
+        value/>
+      <param name="FileNamePattern"
+        value/>
+    </rollingPolicy>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern"
+             value="%5p | %-40c{2} | %-4L | %d{yyyy-MM-dd}T%d{HH:mm:ss} | %m%n"/>
+    </layout>
+  </appender>
+
+  <!-- Debug logs go here, keeping the infoFile untainted -->
+  <appender name="debugFile"
+            class="org.apache.log4j.rolling.RollingFileAppender">
+    <param name="threshold"
+           value="DEBUG"/>
+    <param name="append"
+           value="true"/>
+    <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+      <param name="ActiveFileName"
+        value/>
+      <param name="FileNamePattern"
+        value/>
+    </rollingPolicy>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern"
+             value="%5p | %-40c{2} | %-4L | %d{yyyy-MM-dd}T%d{HH:mm:ss} | %m%n"/>
+    </layout>
+  </appender>
+
+  <appender name="smtpAppender"
+            class="ca.athabascau.util.log4j.SMTPAppender">
+    <!-- The following are required parameters, and do not have default values
+-->
+    <!-- What level of messages should trigger an email? It's best to have ERROR
+set here, unless you really want a lot of messages. If you are going
+to have a lot of messages, you need to set a buffer size, and make
+sure that your flood protection values are ste to appropriate values -->
+    <param name="threshold"
+           value="ERROR"/>
+    <param name="BufferSize"
+           value="3"/>
+    <param name="SMTPHost"
+           value="localhost"/>
+    <param name="SMTPPort"
+           value="25"/>
+    <param name="SMTPDebug"
+           value="true"/>
+    <param name="From"
+           value="${log.smtp.from}"/>
+    <param name="To"
+           value="${log.smtp.to}"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern"
+             value="%5p | %m%n"/>
+    </layout>
+
+    <!-- The following are not required, and have default values-->
+    <!-- Defaults to false-->
+    <param name="SendOnClose"
+           value="true"/>
+    <!-- no default" -->
+    <param name="Subject"
+           value="ERROR - web services"/>
+    <!-- frequency per second = Frequency/FrequencyMilliseconds*1000 -->
+    <!-- defaults to 5 -->
+    <param name="FloodFrequency"
+           value="3"/>
+    <!-- defaults to 60000 (60s) -->
+    <param name="FloodFrequencyMilliseconds"
+           value="60000"/>
+    <!-- Defaults to "Mail logging flood protection activated, no more errors
+will be sent until the frequency has dropped below the configured
+frequency" -->
+    <param name="FloodEnabledMessage"
+           value="Mail logging flood protection activated, no more errors will be sent until the frequency has dropped below the frequency of 3 messages per minute."/>
+    <!-- relative to the classpath OR an absolute path. If relative to the
+classpath, an initial '/' is REQUIRED. If not configured, no filtering
+will be performed-->
+<!--    <param name="filterConfig" value="/filter-config.xml"/>-->
+  </appender>
+
+
+  <!-- Setup logger levels for certain classes -->
+  <category name="org.apache.axis2.enterprise">
+    <level value="FATAL"/>
+  </category>
+  <category name="de.hunsicker.jalopy.io">
+    <level value="FATAL"/>
+  </category>
+  <category name="httpclient.wire.header">
+    <level value="FATAL"/>
+  </category>
+  <category name="org.apache.commons.httpclient">
+    <level value="FATAL"/>
+  </category>
+
+  <!--  Log level is ALWAYS DEBUG -->
+  <root>
+    <level value="DEBUG"/>
+    <appender-ref ref="infoFile"/>
+    <appender-ref ref="debugFile"/>
+    <appender-ref ref="smtpAppender"/>
+  </root>
+
+</log4j:configuration>

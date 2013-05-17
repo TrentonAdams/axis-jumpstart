@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>axis-jumpstart</artifactId>
+    <groupId>com.example</groupId>
+    <version>0.0.8-SNAPSHOT</version>
+  </parent>
+  <groupId>com.example.ws1</groupId>
+  <artifactId>ws1</artifactId>
+  <version>0.0.8-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>ws1</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.15</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>ws2</finalName>
+    <resources>
+      <!-- Copy configurations over to webapp folder -->
+      <resource>
+        <filtering>true</filtering>
+        <directory>${basedir}/src/main/resources</directory>
+        <excludes>  <!-- services.xml is defined in the aar plugin config -->
+          <exclude>services.xml</exclude>
+        </excludes>
+      </resource>
+    </resources>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <id>attach-artifacts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>${basedir}/target/${build.finalName}.aar</file>
+                  <type>aar</type>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.axis2</groupId>
+        <artifactId>axis2-aar-maven-plugin</artifactId>
+        <version>1.6.1</version>
+        <executions>
+          <execution>
+            <id>aar</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>aar</goal>
+            </goals>
+          </execution>
+        </executions>
+        <extensions>true</extensions>
+        <configuration>
+          <servicesXmlFile>${basedir}/src/main/resources/services.xml</servicesXmlFile>
+          <fileSets>
+            <fileSet>
+              <directory>${basedir}/target/classes</directory>
+              <outputDirectory>${basedir}/target</outputDirectory>
+              <includes>
+                <include>*.class</include>
+              </includes>
+              <excludes>
+                <exclude>*/**</exclude>
+              </excludes>
+            </fileSet>
+          </fileSets>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+</project>

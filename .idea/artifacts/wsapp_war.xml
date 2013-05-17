@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="wsapp:war">
+    <output-path>$PROJECT_DIR$/wsapp/target</output-path>
+    <root id="archive" name="wsapp.war">
+      <element id="artifact" artifact-name="wsapp:war exploded" />
+    </root>
+  </artifact>
+</component>
