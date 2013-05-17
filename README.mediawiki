@@ -35,3 +35,15 @@ here are the REST versions...
 The update-client.sh script is an example on how to create a client JAR for
 SOAP based requests to your service.  This JAR is generated from the WSDL,
 using Axis' wsdl2java.sh.
+
+= Understanding the Example =
+This should be filled in soon.  But the basics are...
+* wsapp - depends on the axis2 war, and sucks in the ws1 and ws2 as dependencies, automatically deploying them as web services
+* ws1 - an example web service with a list of cities that can be retrieved or searched on
+* ws2 - an example web service with a list of countries that can be retrieved or searched on, as well as show an example of what happens when an exception is thrown.
+* Both ws1 and ws2 build as any other Java JAR, and in addition they...
+** build an AAR with axis2-aar-maven-plugin
+** attach the AAR, such as when deploying to repos or doing releases, by default with the build-helper-maven-plugin
+** provide a proper services.xml
+** provide the Java POJO classes to run as web services
+* wsapp pulls in both jar and aar classifier types as dependencies.  Only the AAR is needed, but including a JAR allows IDEs to auto complete in things like configuration files and what not.
