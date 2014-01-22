@@ -41,12 +41,16 @@
           <element id="library" level="project" name="Maven: com.sun.jdmk:jmxtools:1.2.1" />
           <element id="library" level="project" name="Maven: com.sun.jmx:jmxri:1.2.1" />
           <element id="library" level="project" name="Maven: log4j:apache-log4j-extras:1.1" />
-          <element id="archive" name="ws2.jar">
+          <element id="archive" name="ws1-0.0.8-SNAPSHOT.jar">
             <element id="module-output" name="ws1" />
+          </element>
+          <element id="archive" name="ws1-0.0.8-SNAPSHOT.aar">
+            <element id="module-output" name="ws1" />
+          </element>
+          <element id="archive" name="ws2-0.0.8-SNAPSHOT.jar">
             <element id="module-output" name="ws2" />
           </element>
-          <element id="archive" name="ws2.aar">
-            <element id="module-output" name="ws1" />
+          <element id="archive" name="ws2-0.0.8-SNAPSHOT.aar">
             <element id="module-output" name="ws2" />
           </element>
           <element id="library" level="project" name="Maven: com.github.trentonadams:au-log4j:1.0.2" />

@@ -1,5 +1,8 @@
 package com.example.ws2;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,33 +18,35 @@ import java.util.List;
  *
  * @author Trenton D. Adams
  */
+@XmlRootElement(name = "countries")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Countries
 {
-    private List<String> countries;
+    private List<Country> countries;
 
     public Countries()
     {
-        countries = new ArrayList<String>();
-        countries.add("Canada");
-        countries.add("United States of America");
-        countries.add("Britain");
-        countries.add("France");
-        countries.add("Russia");
+        countries = new ArrayList<Country>();
+        countries.add(new Country().setName("Canada"));
+        countries.add(new Country().setName("United States of America"));
+        countries.add(new Country().setName("Britain"));
+        countries.add(new Country().setName("France"));
+        countries.add(new Country().setName("Russia"));
     }
 
-    public List<String> getCountries()
+    public List<Country> getCountries()
     {
         return Collections.unmodifiableList(countries);
     }
 
-    public List<String> searchCountries(final String pattern)
+    public List<Country> searchCountries(final String pattern)
     {
-        final List<String> foundCountries = new ArrayList<String>(5);
-        for (final String city : countries)
+        final List<Country> foundCountries = new ArrayList<Country>(5);
+        for (final Country country : countries)
         {
-            if (city.matches(pattern))
+            if (country.getName().matches(pattern))
             {
-                foundCountries.add(city);
+                foundCountries.add(country);
             }
 
         }
