@@ -9,16 +9,16 @@ package com.example.ws2;
  */
 public class Country
 {
-    private String name;
+    private String countryName;
 
-    public String getName()
+    public String getCountryName()
     {
-        return name;
+        return countryName;
     }
 
-    public Country setName(String name)
+    public Country setCountryName(String countryName)
     {
-        this.name = name;
+        this.countryName = countryName;
         return this;
     }
 } // END Country class

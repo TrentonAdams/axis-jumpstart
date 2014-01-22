@@ -27,11 +27,11 @@ public class Countries
     public Countries()
     {
         countries = new ArrayList<Country>();
-        countries.add(new Country().setName("Canada"));
-        countries.add(new Country().setName("United States of America"));
-        countries.add(new Country().setName("Britain"));
-        countries.add(new Country().setName("France"));
-        countries.add(new Country().setName("Russia"));
+        countries.add(new Country().setCountryName("Canada"));
+        countries.add(new Country().setCountryName("United States of America"));
+        countries.add(new Country().setCountryName("Britain"));
+        countries.add(new Country().setCountryName("France"));
+        countries.add(new Country().setCountryName("Russia"));
     }
 
     public List<Country> getCountries()
@@ -44,7 +44,7 @@ public class Countries
         final List<Country> foundCountries = new ArrayList<Country>(5);
         for (final Country country : countries)
         {
-            if (country.getName().matches(pattern))
+            if (country.getCountryName().matches(pattern))
             {
                 foundCountries.add(country);
             }
